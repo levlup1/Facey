@@ -51,7 +51,7 @@ public class FaceyClass extends JFrame {
   
   
   
-  private static void main(String[] args){
+  public static void main(String[] args){
 	  
 	  
     System.out.println("Is it working yet?");
@@ -59,16 +59,18 @@ public class FaceyClass extends JFrame {
     frame.setTitle("GUI Changing Face");
     frame.setDefaultCloseOperation(EXIT_ON_CLOSE);
     frame.setVisible(true);
+    frame.setLocationRelativeTo(null);
+    frame.setSize(650, 650);
   }
 
   
   public FaceyClass() {
     //adding the images into the respective ArrayList
     for(int i = 0; i < 4; i++){
-      eyeList.add(new ImageIcon(getClass().getResource("/Gooooooy/GUISRC/eyes/eyes" + String.valueOf(i) + ".png")).getImage());
-      noseList.add(new ImageIcon(getClass().getResource("/Gooooooy/GUISRC/nose/nose" + String.valueOf(i) + ".png")).getImage());
-      mouthList.add(new ImageIcon(getClass().getResource("/Gooooooy/GUISRC/mouth/mouth" + String.valueOf(i) + ".png")).getImage());
-      backGroundList.add(new ImageIcon(getClass().getResource("/Gooooooy/GUISRC/background/backG" + String.valueOf(i) + ".png")).getImage());
+      eyeList.add(new ImageIcon(getClass().getResource("eyes" + String.valueOf(i) + ".png")).getImage());
+      noseList.add(new ImageIcon(getClass().getResource("nose" + String.valueOf(i) + ".png")).getImage());
+      mouthList.add(new ImageIcon(getClass().getResource("mouth" + String.valueOf(i) + ".png")).getImage());
+      backGroundList.add(new ImageIcon(getClass().getResource("backG" + String.valueOf(i) + ".png")).getImage());
     }
     /*Setting the dimensions of the inner workings of the GUI*/
     JPanel panel = new JPanel();
@@ -119,6 +121,7 @@ public class FaceyClass extends JFrame {
           if(numBackGround != 3)
             numBackGround++; //then the background changes
             else numBackGround = 0;
+         
         }
       }
     });
@@ -128,13 +131,18 @@ public class FaceyClass extends JFrame {
     getContentPane().add(new Face(), BorderLayout.CENTER);
     
     BGLabel = new JLabel("BG Label");
-    BGLabel.setIcon(new ImageIcon(FaceyClass.class.getResource("/background/backG0.png")));
+    //BGLabel.setIcon(new ImageIcon(FaceyClass.class.getResource("backG0.png")));
     getContentPane().add(BGLabel, BorderLayout.CENTER);
   }
 
   /*Panel for the users to paint on.*/
-  protected class Face extends JPanel {
-    @Override
+  public class Face extends JPanel {
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	@Override
     public void paint(Graphics g) {
       //using the super keyword allows this subclass to overload the methods inherited by the superclass
       super.paint(g);
